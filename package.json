@@ -1,6 +1,27 @@
 {
   "dependencies": {
     "ejs": "^3.1.8",
-    "express": "^4.18.2"
-  }
+    "express": "^4.18.2",
+    "mongoose": "^7.0.1",
+    "nodemon": "^2.0.21"
+  },
+  "name": "conpel",
+  "version": "1.0.0",
+  "description": "Social blog website",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1" ,
+    "start" : "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdevesh890/Conpel.git"
+  },
+  "author": "Devesh_Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdevesh890/Conpel/issues"
+  },
+  "homepage": "https://github.com/sdevesh890/Conpel#readme"
 }
