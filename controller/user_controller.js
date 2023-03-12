@@ -1,20 +1,20 @@
 module.exports.signin = function(req , res)
 {
     res.render('user_signin',{
-        title: "Conpel | sign-in"
+        title: "Conpel | Sign-in"
     })
 }
 module.exports.signup = function(req ,res)
 {
     res.render('user_signup', 
     {
-        title : "Conpel | sign-up" 
+        title : "Conpel | Sign-up" 
     })
 }
 module.exports.profile = function(req ,res)
 {
     res.render('user_profile' , 
     {
-        title : "Conpel | profile"
+        title : "Conpel | Profile"
     })
 }

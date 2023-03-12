@@ -1,12 +1,19 @@
 const express = require('express');
 const port = 8000;
 const app = express();
+const db = require('./config/mongoose');
+app.use(express.urlencoded({extended : true}));
 
-app.use('/' , require('./routes')); //middleware for route
+
+//middleware for route
+app.use('/' , require('./routes')); 
 
 // EJS setup
 app.set('view engine','ejs');
 app.set('views' ,'./views');
+
+//CSS or assets setup 
+app.use('/assets',express.static('assets'));
 app.listen(port , function(err)
 {
     if(err)
@@ -15,4 +22,4 @@ app.listen(port , function(err)
         return;
     }
     console.log('Your server is running on ',port);
-})
+});
