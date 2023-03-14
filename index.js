@@ -1,25 +1,51 @@
 const express = require('express');
-const port = 8000;
+const cookieParser = require('cookie-parser');
 const app = express();
+const port = 8000;
 const db = require('./config/mongoose');
-app.use(express.urlencoded({extended : true}));
+// used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
 
+app.use(express.urlencoded({extended:true}));
 
-//middleware for route
-app.use('/' , require('./routes')); 
+app.use(cookieParser());
 
-// EJS setup
-app.set('view engine','ejs');
-app.set('views' ,'./views');
-
-//CSS or assets setup 
 app.use('/assets',express.static('assets'));
-app.listen(port , function(err)
-{
-    if(err)
-    {
-        console.log('Error occuried in set up express');
-        return;
+
+
+// extract style and scripts from sub pages into the layout
+
+
+
+// set up the view engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+
+app.use(session({
+    name: 'codeial',
+    // TODO change the secret before deployment in production mode
+    secret: 'blahsomething',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000 * 60 * 100)
     }
-    console.log('Your server is running on ',port);
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// use express router
+app.use('/', require('./routes'));
+
+
+app.listen(port, function(err){
+    if (err){
+        console.log(`Error in running the server: ${err}`);
+    }
+
+    console.log(`Server is running on port: ${port}`);
 });

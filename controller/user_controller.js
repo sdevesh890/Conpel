@@ -1,3 +1,4 @@
+const User = require('../model/user_model');
 module.exports.signin = function(req , res)
 {
     res.render('user_signin',{
@@ -13,10 +14,7 @@ module.exports.signup = function(req ,res)
 }
 module.exports.profile = function(req ,res)
 {
-    res.render('user_profile' , 
-    {
-        title : "Conpel | Profile"
-    })
+    
 }
 module.exports.create = function(req , res)
 {
@@ -51,4 +49,5 @@ module.exports.create = function(req , res)
 module.exports.create_session = function(req , res)
 {
    //todo later
+   return res.redirect('/');
 }
