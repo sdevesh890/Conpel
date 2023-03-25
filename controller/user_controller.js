@@ -1,12 +1,20 @@
 const User = require('../model/user_model');
 module.exports.signin = function(req , res)
 {
+    if(req.isAuthenticated())
+    {
+        return res.redirect('/user/profile');
+    }
     res.render('user_signin',{
         title: "Conpel | Sign-in"
     })
 }
 module.exports.signup = function(req ,res)
 {
+    if(req.isAuthenticated())
+    {
+        return res.redirect('/user/profile');
+    }
     res.render('user_signup', 
     {
         title : "Conpel | Sign-up" 
@@ -14,7 +22,11 @@ module.exports.signup = function(req ,res)
 }
 module.exports.profile = function(req ,res)
 {
-    
+   return res.render( 'user_profile' , 
+        {
+            title : req.user.name
+        }
+    )
 }
 module.exports.create = function(req , res)
 {
@@ -48,6 +60,17 @@ module.exports.create = function(req , res)
 }
 module.exports.create_session = function(req , res)
 {
-   //todo later
    return res.redirect('/');
+}
+
+module.exports.destroySession = function(req,res)
+{
+    req.logout(function(err)
+    {
+        if(err)
+        {
+            console.log(err);
+        }
+    });
+    return res.redirect('/');
 }

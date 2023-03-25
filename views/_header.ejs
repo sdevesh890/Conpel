@@ -1,0 +1,12 @@
+<header>
+   <h1>Conpel Header</h1>
+   <ul>
+     <% if(locals.user){%>
+        <li><%=user.name%></li>
+        <a href="/user/sign-out">Sign-Out</a>
+      <%}else{%>
+          <li><a href="/user/sign-in">Sign-in</a></li>
+          <li><a href="/user/sign-up">Sign-up</a></li>
+        <%}%>
+   </ul>
+</header>
